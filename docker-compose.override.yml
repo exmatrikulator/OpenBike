@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    ports:
+     - "5432:5432"
+  cykel:
+    volumes:
+      - ./cykel:/cykel
+  voorwiel:
+    volumes:
+     - ./voorwiel/:/app
+
