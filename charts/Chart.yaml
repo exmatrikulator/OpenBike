@@ -1,0 +1,12 @@
+apiVersion: v1
+name: OpenBike
+version: 0.0.1
+appVersion: 0.0.1
+description: OpenSource Bikesharing system
+keywords:
+  - bike
+  - sharing
+  - system
+home: https://ulm.dev/projects/openbike/
+sources:
+  - https://github.com/exmatrikulator/OpenBike

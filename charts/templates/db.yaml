@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: db
+  name: db
+spec:
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_DB
+          value: cykel
+        - name: POSTGRES_PASSWORD
+          value: {{ .Values.DbPassword }}
+        image: mdillon/postgis
+        imagePullPolicy: Always
+        name: db
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+spec:
+  clusterIP: None
+  selector:
+    app: db
+  type: ClusterIP

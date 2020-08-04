@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: voorwiel
+  name: voorwiel
+spec:
+  selector:
+    matchLabels:
+      app: voorwiel
+  template:
+    metadata:
+      labels:
+        app: voorwiel
+    spec:
+      containers:
+      - image: exmatrikulator/openbike_voorwiel
+        imagePullPolicy: Always
+        name: voorwiel
+        ports:
+        - containerPort: 80
+          name: voorwiel
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: voorwiel
+spec:
+  ports:
+  - name: voorwiel-voorwiel
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: voorwiel
+  type: ClusterIP

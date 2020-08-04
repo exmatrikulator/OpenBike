@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cykel
+  name: cykel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cykel
+  template:
+    metadata:
+      labels:
+        app: cykel
+    spec:
+      containers:
+      - env:
+        - name: ALLOWED_HOSTS
+          value: '*'
+        - name: CORS_ORIGIN_WHITELIST
+          value: http://{{ .Values.CykleDomain }}
+        - name: DATABASE_URL
+          value: postgis://postgres:{{ .Values.DbPassword }}@db:5432/cykel
+        - name: SECRET_KEY
+          value: {{ .Values.SecretKey }}
+        - name: UI_SITE_URL
+          value: http://{{ .Values.CykleDomain }}
+        image: exmatrikulator/openbike_cykel
+        imagePullPolicy: Always
+        name: cykel
+        ports:
+        - containerPort: 8000
+          name: cykel
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /cykel/media
+          name: media
+      volumes:
+      - name: media
+        persistentVolumeClaim:
+          claimName: media
+---

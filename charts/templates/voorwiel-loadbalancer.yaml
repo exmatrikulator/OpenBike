@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: voorwiel-loadbalancer
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: voorwiel
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: voorwiel
+  type: LoadBalancer
