@@ -7,7 +7,13 @@ services:
   cykel:
     volumes:
       - ./cykel:/cykel
+    environment:
+      - DEBUG=1
   voorwiel:
+    build:
+      dockerfile: DockerfileDebug
     volumes:
      - ./voorwiel/:/app
+    ports:
+     - "8080:8080"
 
