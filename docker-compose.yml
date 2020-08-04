@@ -17,7 +17,6 @@ services:
     environment:
       - SECRET_KEY=fooooo
       - ALLOWED_HOSTS=0.0.0.0,localhost
-      - DEBUG=1
       - DATABASE_URL=postgis://postgres:password@db:5432/cykel
       - UI_SITE_URL=http://localhost
       - CORS_ORIGIN_WHITELIST=http://localhost
@@ -25,8 +24,7 @@ services:
       - db
   voorwiel:
     build: voorwiel
-    ports:
-      - "80:80"
+
 
 volumes:
   data:

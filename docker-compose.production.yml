@@ -1,0 +1,6 @@
+version: '3'
+
+services:
+  voorwiel:
+    ports:
+      - "80:80"
