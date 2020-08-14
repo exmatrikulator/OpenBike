@@ -17,6 +17,7 @@ services:
       - DATABASE_URL=postgis://postgres:password@db:5432/cykel
       - UI_SITE_URL=http://localhost
       - CORS_ORIGIN_WHITELIST=http://localhost
+      # - USE_X_FORWARDED_PROTO=true
     depends_on:
       - db
   voorwiel:
