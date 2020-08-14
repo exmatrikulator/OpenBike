@@ -6,6 +6,8 @@ services:
     ports:
      - "5432:5432"
   cykel:
+    ports:
+      - "8000:8000"
     volumes:
       - ./cykel:/cykel
     environment:

@@ -10,8 +10,6 @@ services:
       - POSTGRES_PASSWORD=password
   cykel:
     build: cykel
-    ports:
-      - "8000:8000"
     volumes:
       - media:/cykel/media
     environment:

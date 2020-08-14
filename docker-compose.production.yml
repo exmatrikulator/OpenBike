@@ -2,6 +2,9 @@
 version: '3'
 
 services:
+  cykel:
+    ports:
+      - "8000:8000"
   voorwiel:
     ports:
       - "80:80"
