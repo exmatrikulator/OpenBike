@@ -27,19 +27,23 @@ OpenBike is an open source bikesharing system.
 git clone -b docker https://github.com/exmatrikulator/OpenBike
 cd OpenBike
 git clone -b docker https://github.com/exmatrikulator/cykel
+git clone -b docker https://github.com/exmatrikulator/cykel-manual-tracker
+git clone -b docker https://github.com/exmatrikulator/cykel-ttn-wifi
 git clone -b docker https://github.com/exmatrikulator/voorwiel
 ```
+
+Copy docker-compose.secret.sample.yml to docker-compose.secret.yml and adjust on your needs. 
 
 You may want to set the NODE_ENV in _docker-compose.yml_ if have an alternative config for voorwiel.
 
 ### Debug / Develop
 ```
-docker-compose up -d --build
+docker-compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.secret.yml up -d --build
 ```
 
 ### Production
 ```
-docker-compose -f docker-compose.yml -f docker-compose.production.yml  up -d --build
+docker-compose -f docker-compose.yml -f docker-compose.production.yml -f docker-compose.secret.yml up -d --build
 ```
 
 ### General

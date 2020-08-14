@@ -15,8 +15,7 @@ services:
     volumes:
       - media:/cykel/media
     environment:
-      - SECRET_KEY=fooooo
-      - ALLOWED_HOSTS=0.0.0.0,localhost
+      - ALLOWED_HOSTS=0.0.0.0,localhost,cykel
       - DATABASE_URL=postgis://postgres:password@db:5432/cykel
       - UI_SITE_URL=http://localhost
       - CORS_ORIGIN_WHITELIST=http://localhost
@@ -24,9 +23,28 @@ services:
       - db
   voorwiel:
     build: voorwiel
-    # environment:
-    #   - NODE_ENV=config_name
+    environment:
+      - NODE_ENV=wuppertal
+  cykel-ttn-wifi:
+    build: cykel-ttn-wifi
+    environment:
+      - ENDPOINT=http://cykel:8000/api/bike/updatelocation
+      - PORT=8081
+  cykel-manual-tracker:
+    build: cykel-manual-tracker
+    environment:
+      - ENDPOINT=http://cykel:8000/api/bike/updatelocation
+  prometheus:
+    build: prometheus
+    volumes:
+      - prometheus:/prometheus
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - grafana:/var/lib/grafana
 
 volumes:
   data:
   media:
+  prometheus:
+  grafana:

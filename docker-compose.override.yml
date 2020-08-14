@@ -1,3 +1,4 @@
+#Docker Compose for Debug
 version: '3'
 
 services:
@@ -17,4 +18,15 @@ services:
     ports:
      - "8080:8080"
      - "80:8080"
-
+  cykel-ttn-wifi:
+    ports:
+      - "8081:8081"
+  cykel-manual-tracker:
+    ports:
+      - "5000:5000"
+  prometheus:
+    ports:
+      - "9090:9090"
+  grafana:
+    ports:
+      - "3000:3000"
