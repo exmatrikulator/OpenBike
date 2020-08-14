@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 git clone -b docker https://github.com/exmatrikulator/cykel
 git clone -b docker https://github.com/exmatrikulator/cykel-manual-tracker
