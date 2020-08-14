@@ -9,6 +9,7 @@ services:
       - POSTGRES_DB=cykel
       - POSTGRES_PASSWORD=password
   cykel:
+    image: openbike_cykel
     build: cykel
     volumes:
       - media:/cykel/media
@@ -21,19 +22,23 @@ services:
     depends_on:
       - db
   voorwiel:
+    image: openbike_voorwiel
     build: voorwiel
     environment:
       - NODE_ENV=wuppertal
   cykel-ttn-wifi:
+    image: openbike_cykel-ttn-wifi 
     build: cykel-ttn-wifi
     environment:
       - ENDPOINT=http://cykel:8000/api/bike/updatelocation
       - PORT=8081
   cykel-manual-tracker:
+    image: openbike_cykel-manual-tracker
     build: cykel-manual-tracker
     environment:
       - ENDPOINT=http://cykel:8000/api/bike/updatelocation
   prometheus:
+    image: openbike_prometheus
     build: prometheus
     volumes:
       - prometheus:/prometheus

@@ -46,7 +46,18 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml -f docker-co
 docker-compose -f docker-compose.yml -f docker-compose.production.yml -f docker-compose.secret.yml up -d --build
 ```
 
+Or via Docker Stack
+```
+docker-compose -f docker-compose.yml -f docker-compose.production.yml -f docker-compose.secret.yml build
+./docker-stack.sh
+```
+
 ### General
+
+Create Database:
+```
+docker-compose exec cykel python manage.py migrate
+```
 
 Wait and visit http://localhost/ or http://localhost:8000/admin for Django Backend.
 
